@@ -1,0 +1,234 @@
+@import url("https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap");
+
+* {
+  box-sizing: border-box;
+  color: white;
+  scroll-behavior: smooth;
+  font-family: "Reddit Mono", monospace;
+  line-height: 2;
+}
+
+.scroll-watcher {
+  width: 100%;
+  height: 5px;
+  background-color: red;
+  position: fixed;
+  top: 0px;
+  z-index: 1000;
+  animation: watcher forwards linear;
+  animation-timeline: scroll();
+  transform-origin: left;
+  scale: 0 1;
+}
+
+@keyframes watcher {
+  to {
+    scale: 1 1;
+  }
+}
+body {
+  background-color: #0a0909;
+  padding: 0px;
+  margin: 0px;
+  min-width: 320px;
+}
+
+section {
+  margin-bottom: 50px;
+}
+header {
+  padding: 0px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 72px;
+  z-index: 1000;
+  margin-bottom: 50px;
+  & img {
+    display: var(--logoDiplay, block);
+    width: 100px;
+    height: max-content;
+  }
+  & ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px 30px;
+    font-size: 18px;
+    font-weight: 500;
+    & li {
+      flex: 1 auto;
+      transition: all 0.5s;
+      & a {
+        text-decoration: none;
+      }
+    }
+    & li:is(:hover) {
+      color: var(--liColor);
+      text-shadow: var(--liShadow);
+      font-weight: bold;
+      cursor: pointer;
+      scale: 1.2;
+      /* padding: 10px 30px; */
+    }
+  }
+  position: sticky;
+  top: -5rem;
+
+  /*Animation for header*/
+
+  animation: stickyNav linear forwards;
+  animation-timeline: view();
+  animation-range: 130vh 150vh;
+}
+
+main {
+  height: 2000px;
+  padding: 10px;
+}
+
+.Content {
+  cursor: pointer;
+  text-align: center;
+  background: url(./assets/nature2.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 25px;
+  min-height: 70vh;
+  padding: 0px 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  filter: brightness(2) saturate(5) grayscale(200%);
+  transition: all 500ms ease;
+}
+.Content:is(:hover, :focus-within) {
+  filter: brightness(1.5) saturate(3);
+}
+
+/*Cards*/
+.cards {
+  padding: 10px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  max-width: 20rem;
+  border: 2px solid rgba(200, 200, 200, 0.4);
+  transition: all 0.5s ease;
+  overflow: hidden;
+  flex: auto 1;
+}
+
+.card-img {
+  overflow: hidden;
+  height: 150px;
+  max-width: 100%;
+  & img {
+    transition: all 0.5s;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    mix-blend-mode: exclusion;
+    display: block;
+    object-fit: cover;
+    border: 3px solid rgb(215, 215, 161);
+  }
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-body h3 {
+  margin: 0px;
+  display: flex;
+  justify-content: space-between;
+  & span {
+    font-size: 15px;
+  }
+}
+
+.card:is(:hover) {
+  cursor: pointer;
+  filter: drop-shadow(1px 1px 10px white);
+  box-shadow: -3px -5px 10px white, 3px 5px 10px white;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(16px);
+}
+
+.card:is(:hover) .card-img img {
+  width: 100% !important;
+  height: 100%;
+  border-radius: 0px;
+  mix-blend-mode: multiply;
+  border: none;
+  filter: brightness(1) drop-shadow(10px 10px 100px yellow);
+}
+
+/*Employees*/
+
+#Employees {
+  max-width: 100%;
+  margin-bottom: 100px;
+}
+.emp-div {
+  max-width: 90vw;
+  margin: auto;
+  max-height: 100vh;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.emp-img {
+  transform: scale(1);
+  max-width: 100%;
+  height: 100%;
+  transition: all 0.5s;
+  object-fit: fill;
+  object-position: center;
+}
+
+@keyframes stickyNav {
+  0%,
+  100% {
+    --liColor: black;
+    width: fit-content;
+    background-color: rgba(200, 200, 200, 0.5);
+    margin: auto;
+    --logoDiplay: none;
+    height: fit-content;
+  }
+  100% {
+    padding: 0px 56px;
+    top: 10px;
+    border-radius: 100vw;
+  }
+}
+
+@media screen and (max-width: 786px) {
+  * {
+    line-height: 1.5;
+  }
+  header {
+    width: auto;
+    top: 0px !important;
+    height: auto;
+    border-radius: 0px !important;
+    justify-content: center;
+    border: 2px solid rgba(200, 200, 200, 0.7);
+    backdrop-filter: blur(3rem);
+  }
+  ul {
+    gap: 10px !important;
+    font-size: 18px !important;
+  }
+}
